@@ -6,3 +6,4 @@ module.exports = router;
 
 router.get('/', inventoryController.index);
 router.get('/new', inventoryController.new);
+router.post('/', inventoryController.create);
