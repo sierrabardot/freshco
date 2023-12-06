@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+
+<h2>Inventory</h2>
+<% if (inventory.length) { %>
+<table>
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>SKU</th>
+            <th>Quantity Available</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% inventory.forEach((item) => { %>
+        <tr>
+            <td><%= item.productName %></td>
+            <td><%= item.sku %></td>
+            <td><%= item.quantityAvailable %></td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+<% } else { %>
+    <h4>No Inventory</h4>
+    <% } %>
+</div>

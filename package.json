@@ -1,13 +1,21 @@
 {
     "name": "freshco",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
         "start": "node server.js",
         "build": "echo \"Build completed\"",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
-        "express": "^4.18.2"
+        "dotenv": "^16.3.1",
+        "ejs": "^3.1.9",
+        "express": "^4.18.2",
+        "method-override": "^3.0.0",
+        "mongoose": "^8.0.2",
+        "morgan": "^1.10.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
     }
 }
