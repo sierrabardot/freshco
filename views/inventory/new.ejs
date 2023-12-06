@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+
+<h2>Add Item</h2>
+<nav>
+    <ul>
+        <li><a href="/inventory">Back to Inventory</a></li>
+    </ul>
+</nav>
+
+<form action="/inventory" method="POST">
+
+    <label for="productName">Item Name:</label>
+    <input type="text" name="productName" required>
+
+    <label for="sku">SKU:</label>
+    <input type="text" name="sku">
+
+    <label for="quantityAvailable">Initial Quantity:</label>
+    <input type="number" name="quantityAvailable" required>
+
+    <button type="submit">Add Item</button>
+</form>
+
+<%- include('../partials/footer') %>

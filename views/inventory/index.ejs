@@ -1,6 +1,12 @@
 <%- include('../partials/header') %>
 
 <h2>Inventory</h2>
+<nav>
+    <ul>
+        <li><a href="/inventory/new">Add Item</a></li>
+    </ul>
+</nav>
+
 <% if (inventory.length) { %>
 <table>
     <thead>
@@ -24,3 +30,5 @@
     <h4>No Inventory</h4>
     <% } %>
 </div>
+
+<%- include('../partials/footer') %>
