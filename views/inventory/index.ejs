@@ -17,17 +17,17 @@
         </tr>
     </thead>
     <tbody>
-        <% inventory.forEach((item) => { %>
+        <% inventory.forEach((product) => { %>
         <tr>
-            <td><%= item.productName %></td>
-            <td><%= item.sku %></td>
-            <td><%= item.quantityAvailable %></td>
+            <td><a href="/inventory/<%= product.id %>"><%= product.productName %></a></td>
+            <td><%= product.sku %></td>
+            <td><%= product.quantityAvailable %></td>
         </tr>
         <% }) %>
     </tbody>
 </table>
 <% } else { %>
-    <h4>No Inventory</h4>
+    <h4>No Items Listed</h4>
     <% } %>
 </div>
 

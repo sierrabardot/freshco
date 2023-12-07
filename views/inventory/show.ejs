@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+
+<h2><%= product.productName %></h2>
+<nav>
+    <ul>
+        <li><a href="/inventory">Back to Inventory</a></li>
+        <li><a href="/inventory/<%= product._id %>/edit">Update Item</a></li>
+    </ul>
+</nav> 
+
+<table>
+    <tr>
+        <td><strong>Product Name:</strong></td>
+        <td>
+            <%= product.productName %>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>SKU:</strong></td>
+        <td>
+            <%= product.sku %>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Quantity Available:</strong></td>
+        <td>
+            <%= product.quantityAvailable %>
+        </td>
+    </tr>
+</table>
+
+<%- include('../partials/footer') %>
