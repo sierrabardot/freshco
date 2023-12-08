@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const inventoryController = require('../controllers/inventory');
+const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 module.exports = router;
 
-router.get('/new', inventoryController.new);
-router.get('/:id', inventoryController.show);
-router.get('/', inventoryController.index);
-router.post('/', inventoryController.create);
-router.get('/:id/edit', inventoryController.edit);
-router.put('/:id', inventoryController.update);
-router.delete('/:id', inventoryController.delete);
+router.get('/new', ensureLoggedIn, inventoryController.new);
+router.get('/:id', ensureLoggedIn, inventoryController.show);
+router.get('/', ensureLoggedIn, inventoryController.index);
+router.post('/', ensureLoggedIn, inventoryController.create);
+router.get('/:id/edit', ensureLoggedIn, inventoryController.edit);
+router.put('/:id', ensureLoggedIn, inventoryController.update);
+router.delete('/:id', ensureLoggedIn, inventoryController.delete);
