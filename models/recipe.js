@@ -3,13 +3,18 @@ const Schema = mongoose.Schema;
 
 const recipeSchema = new Schema(
     {
+        owner: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
+        },
         name: {
             type: String,
             required: true,
         },
         ingredients: [
             {
-                productName: {
+                product: {
                     type: Schema.Types.ObjectId,
                     ref: 'Inventory',
                     required: true,

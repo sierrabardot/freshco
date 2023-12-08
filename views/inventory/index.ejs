@@ -7,7 +7,7 @@
     </ul>
 </nav>
 
-<% if (inventory.length) { %>
+<% if (userInventory.length) { %>
 <table>
     <thead>
         <tr>
@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        <% inventory.forEach((product) => { %>
+        <% userInventory.forEach((product) => { %>
         <tr>
             <td><a href="/inventory/<%= product.id %>"><%= product.productName %></a></td>
             <td><%= product.sku %></td>

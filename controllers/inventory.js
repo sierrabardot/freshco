@@ -11,9 +11,10 @@ module.exports = {
 };
 
 async function index(req, res) {
-    const inventory = await Inventory.find();
+    const userId = req.user.id;
+    const userInventory = await Inventory.find({ owner: userId });
     res.render('inventory/index', {
-        inventory,
+        userInventory,
         title: 'Inventory',
     });
 }
@@ -54,7 +55,8 @@ async function show(req, res) {
 }
 
 async function create(req, res) {
-    const newProduct = { ...req.body };
+    const userId = req.user.id;
+    const newProduct = { ...req.body, owner: userId };
     try {
         await Inventory.create(newProduct);
         res.redirect('/inventory');

@@ -1,0 +1,54 @@
+<%- include('../partials/header') %>
+
+    <h2>
+        <%= recipe.name %>
+    </h2>
+    <nav>
+        <ul>
+            <li><a href="/recipes">Back to Recipes</a></li>
+            <li><a href="/recipes/<%= recipe._id %>/edit">Update Item</a></li>
+        </ul>
+    </nav>
+
+<h3>Ingredients</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>SKU</th>
+            <th>Quantity (kg/L)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% recipe.ingredients.forEach((ingredient)=> { %>
+            <tr>
+                    <td>
+                        <%= ingredient.product.productName %>
+                    </td>
+                    <td>
+                        <%= ingredient.product.sku %>
+                    </td>
+                    <td>
+                        <%= ingredient.quantityRequired %>
+                    </td>
+            </tr>
+            <% }) %>
+    </tbody>
+</table>
+
+    <h3>Method</h3>
+    <table>
+        <% recipe.method.forEach((step, i)=> { %>
+            <tr>
+                <td>
+                    <%= i + 1 %>
+                </td>
+                <td>
+                    <%= step %>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <%- include('../partials/footer') %>

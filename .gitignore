@@ -2,3 +2,6 @@
 .DS_Store
 .node_modules
 scratch.js
+seed.js
+data.js
+scratch.js
