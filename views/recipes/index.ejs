@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+
+    <h2>Recipes</h2>
+    <nav>
+        <ul>
+            <li><a href="/recipes/new">Add Recipe</a></li>
+        </ul>
+    </nav>
+
+    <% if (recipes.length) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Recipe Name</th>
+                    <th>Serves</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% recipes.forEach((recipe)=> { %>
+                    <tr>
+                        <td><a href="/recipes/<%= recipe.id %>">
+                                <%= recipe.name %>
+                            </a></td>
+                        <td>
+                            <%= recipe.serves %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <% } else { %>
+            <h4>No Recipes Created... Yet!</h4>
+            <% } %>
+                </div>
+
+<%- include('../partials/footer') %>

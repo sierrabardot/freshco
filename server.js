@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 
 const inventoryRouter = require('./routes/inventory');
 const indexRouter = require('./routes/index');
+const recipesRouter = require('./routes/recipes');
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use(function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/inventory', inventoryRouter);
+app.use('/recipes', recipesRouter);
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
