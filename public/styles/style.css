@@ -1,51 +1,126 @@
+/* || Custom properties */
+:root {
+    --dark-pine-green: #182d32;
+    --forest-edge: #617c6f;
+    --sweet-mint-tea: #d4e5cf;
+    --roasted-sienna: #e87e5e;
+    --white-desert: #fdfaf3;
+    --dm-serif-dislay: 'DM Serif Display', serif;
+    --dm-sans: 'DM Sans', sans-serif;
+}
 /* || General styles */
 
 * {
     box-sizing: border-box;
 }
 
-/* Provide set styling for the following elemt types
 body {
+    background-color: var(--white-desert);
+    font-family: var(--dm-sans);
+    margin: 0 auto;
+    padding: 0 30px;
+    height: 100%;
+    width: 1140px;
+    max-width: 100%;
+}
 
-  /* … */
+h1 {
+    font-size: 38px;
+}
 
-h1,
-h2,
-h3,
-h4 {
-    /* … */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--dark-pine-green);
+}
+
+tr:nth-child(even) {
+    background-color: var(--white-desert);
+    filter: brightness(110%);
+}
+
+tr,
+td,
+th {
+    font-size: 14px;
+    text-align: left;
 }
 
 ul {
-    /* … */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-blockquote {
-    /* … */
+a {
+    color: var(--dark-pine-green);
+    text-decoration: none;
+    position: relative;
+    /* Reference: https://medium.com/@dave_lunny/stylish-a-styling-e80c80cbc30e */
+    &:before {
+        content: '';
+        height: 1.5px;
+        position: absolute;
+        bottom: -0.5px;
+        transition: width 0.1s ease-in-out;
+        width: 100%;
+        background-color: var(--forest-edge);
+    }
+    &:hover:before {
+        width: 0;
+    }
+    &:hover {
+        color: var(--forest-edge);
+    }
 }
-
-/* || Typography */
-
-/* || Header and Main Navigation */
-
-/* || Recipes */
 
 /* || SITEWIDE */
-
 .main-nav {
     /* … */
 }
 
 .logo {
-    /* … */
+    font-family: var(--dm-serif-dislay);
+}
+
+/* || Header and Main Navigation */
+
+/* || Footer */
+footer {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* || Recipes */
+.recipes-index-table th:nth-child(1) {
+    width: 75%;
+}
+
+.recipes-index-table th:nth-child(2) {
+    width: 25%;
+}
+
+/* || Inventory */
+.inventory-index-table th:nth-child(1) {
+    width: 60%;
+}
+
+.inventory-index-table th:nth-child(2) {
+    width: 20%;
+}
+
+.inventory-index-table th:nth-child(2) {
+    width: 20%;
+}
+
+.product-table :nth-child(1) {
+    width: 20%;
 }
 
 /* || UTILITIES */
-
-.nobullets {
+.no-bullets {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-
-/* … */
