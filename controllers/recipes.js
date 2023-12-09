@@ -3,11 +3,11 @@ const Inventory = require('../models/inventory');
 
 module.exports = {
     index,
-    // edit,
+    edit,
     show,
     new: newRecipe,
     create,
-    // update,
+    update,
     // delete: deleteRecipe,
 };
 
@@ -31,8 +31,7 @@ async function show(req, res) {
 }
 
 async function create(req, res) {
-    const userId = req.user.id;
-    const userInventory = await Inventory.find({ owner: req.user.id });
+    const recipe = req.params.recipe;
     const ingredients = req.body.ingredients;
     let ingredientsArr = [];
     for (let i = 0; i < ingredients.length; i++) {
@@ -48,29 +47,75 @@ async function create(req, res) {
     }
 
     const newRecipe = {
-        owner: userId,
+        owner: req.user.id,
         name: req.body.name,
         ingredients: ingredientsArr,
         serves: +req.body.serves,
         method: req.body.method,
     };
     try {
-        await Recipe.create(newRecipe);
+        await Recipe.updateOne(newRecipe);
         res.redirect('/recipes');
     } catch (err) {
+        const userInventory = await Inventory.find({ owner: req.user.id });
         console.log(err);
-        res.render('recipes/new', {
+        res.render('recipes/edit', {
             userInventory,
-            title: 'Add Recipe',
+            recipe,
+            title: 'Edit Recipe',
         });
     }
 }
 
 async function newRecipe(req, res) {
-    const userId = req.user.id;
-    const userInventory = await Inventory.find({ owner: userId });
+    const userInventory = await Inventory.find({ owner: req.user.id });
     res.render('recipes/new', {
         userInventory,
         title: 'Add Recipe',
     });
+}
+
+async function edit(req, res) {
+    const recipe = await Recipe.findById(req.params.id);
+    const userInventory = await Inventory.find({ owner: req.user.id });
+    res.render('recipes/edit', {
+        userInventory,
+        recipe,
+        title: 'Update Recipe',
+    });
+}
+
+async function update(req, res) {
+    const recipe = await Recipe.findById(req.params.id);
+    const ingredients = req.body.ingredients;
+    let ingredientsArr = [];
+    for (let i = 0; i < ingredients.length; i++) {
+        const product = await Inventory.findOne({
+            productName: ingredients[i],
+        });
+        const ingredientObj = {
+            product: product._id,
+            quantityRequired: req.body.quantityRequired[i],
+        };
+        ingredientsArr.push(ingredientObj);
+    }
+    const updatedRecipe = {
+        owner: req.user.id,
+        name: req.body.name,
+        ingredients: ingredientsArr,
+        serves: +req.body.serves,
+        method: req.body.method,
+    };
+    try {
+        await Recipe.updateOne({ _id: req.params.id }, updatedRecipe);
+        res.redirect(`/recipes/${recipe.id}`);
+    } catch (err) {
+        console.log(err);
+        const userInventory = await Inventory.find({ owner: req.user.id });
+        res.render('recipes/edit', {
+            recipe,
+            userInventory,
+            title: 'Update Recipe',
+        });
+    }
 }
