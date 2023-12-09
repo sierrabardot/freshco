@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+
+    <h2>
+        Add Recipe
+    </h2>
+    <nav>
+        <ul>
+            <li><a href="/recipes">Back to Recipes</a></li>
+        </ul>
+    </nav>
+
+<form action="/recipes" method="post" class="recipe-form">
+    <label for="name">Recipe Name:</label>
+    <input type="text" name="name" required>
+
+    <label for="serves">Serves:</label>
+    <input type="number" id="serves" name="serves">
+
+    <div class="ingredients-container">
+        <label for="ingredients">Ingredients:</label>
+        <select name="ingredient" class="select-ingt">
+            <% userInventory.forEach((product) => { %>
+                <option value="<%= product.productName %>" name="product[]" class="ingt-options"><%= product.productName %></option>
+                <% }) %>
+        </select>
+            <input type="number" name="quantityRequired[]" placeholder="Quantity (kg/L)" class="add-qty">
+            <button type="button" class="add-ingt-btn">Add Ingredient</button>
+    </div>
+
+    <div class="method-container">
+        <label>Method:</label>
+        <div class="method-step">
+            <textarea name="method[]" placeholder="Method Step" rows="2"></textarea>
+            <button type="button">Add Step</button>
+        </div>
+    </div>
+
+    <button type="submit">Add Recipe</button>
+</form>
+<div class="user-inventory"></div>
+
+<%- include('../partials/footer') %>

@@ -1,10 +1,11 @@
 const Recipe = require('../models/recipe');
+const Inventory = require('../models/inventory');
 
 module.exports = {
     index,
     // edit,
     show,
-    // new: newRecipe,
+    new: newRecipe,
     // create,
     // update,
     // delete: deleteRecipe,
@@ -23,8 +24,17 @@ async function show(req, res) {
         'ingredients.product',
         'productName sku'
     );
-    const ingredients = res.render('recipes/show', {
+    res.render('recipes/show', {
         recipe,
         title: recipe.name,
+    });
+}
+
+async function newRecipe(req, res) {
+    const userId = req.user.id;
+    const userInventory = await Inventory.find({ owner: userId });
+    res.render('recipes/new', {
+        userInventory,
+        title: 'Add Recipe',
     });
 }
