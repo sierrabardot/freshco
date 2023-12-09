@@ -1,3 +1,51 @@
+/* || General styles */
+
 * {
     box-sizing: border-box;
 }
+
+/* Provide set styling for the following elemt types
+body {
+
+  /* … */
+
+h1,
+h2,
+h3,
+h4 {
+    /* … */
+}
+
+ul {
+    /* … */
+}
+
+blockquote {
+    /* … */
+}
+
+/* || Typography */
+
+/* || Header and Main Navigation */
+
+/* || Recipes */
+
+/* || SITEWIDE */
+
+.main-nav {
+    /* … */
+}
+
+.logo {
+    /* … */
+}
+
+/* || UTILITIES */
+
+.nobullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* … */

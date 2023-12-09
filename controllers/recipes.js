@@ -8,7 +8,7 @@ module.exports = {
     new: newRecipe,
     create,
     update,
-    // delete: deleteRecipe,
+    delete: deleteRecipe,
 };
 
 async function index(req, res) {
@@ -117,6 +117,20 @@ async function update(req, res) {
         res.render('recipes/edit', {
             recipe,
             userInventory,
+            title: 'Update Recipe',
+        });
+    }
+}
+
+async function deleteRecipe(req, res) {
+    const recipe = await Recipe.findById(req.params.id);
+    try {
+        await Recipe.findByIdAndDelete(recipe.id);
+        res.redirect('/recipes');
+    } catch (err) {
+        console.log(err);
+        res.render('recipe/edit', {
+            recipe,
             title: 'Update Recipe',
         });
     }
