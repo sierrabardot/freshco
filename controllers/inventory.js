@@ -62,7 +62,9 @@ async function create(req, res) {
         res.redirect('/inventory');
     } catch (err) {
         console.log(err);
-        res.render('inventory/new');
+        res.render('inventory/new', {
+            title: 'Add Item',
+        });
     }
 }
 

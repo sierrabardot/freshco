@@ -9,7 +9,7 @@
         </ul>
     </nav>
 
-<form action="/recipes" method="post" class="recipe-form">
+<form action="/recipes" method="POST" class="recipe-form">
     <label for="name">Recipe Name:</label>
     <input type="text" name="name" required>
 
@@ -19,23 +19,23 @@
     <div class="ingredients-container">
         <label for="ingredients">Ingredients:</label><br />
         <div class="ingt-info">
-            <select name="ingredient">
+            <select name="ingredients[]">
                 <% userInventory.forEach((product) => { %>
                     <option value="<%= product.productName %>" name="product[]" class="ingt-options"><%= product.productName %></option>
                     <% }) %>
             </select>
-            <input type="number" name="quantityRequired[]" placeholder="Quantity (kg/L)" class="add-qty">
+            <input type="number" step="0.0001" name="quantityRequired[]" placeholder="Quantity (kg/L)" class="add-qty">
         </div>
     </div>
-    <button type="button" class="add-ingt-btn">Add Ingredient</button>
+    <button type="button" class="add-ingt-btn">Add Additional Ingredient</button>
 
     <div class="method-container">
         <label>Method:</label>
         <div class="method-step">
-            <input type="text" name="method[]" placeholder="Method Step" rows="2"></input>
+            <input type="text" name="method[]" placeholder="Method Step"></input>
         </div>
     </div>
-    <button type="button" class="add-step-btn">Add Step</button><br />
+    <button type="button" class="add-step-btn">Add Additional Step</button><br />
     <button type="submit">Add Recipe</button>
 </form>
 <div class="user-inventory"></div>
