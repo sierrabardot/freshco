@@ -5,7 +5,7 @@
     </h2>
     <nav>
         <ul>
-            <li><a href="/recipes">Back to Recipes</a></li>
+            <li><a href="/recipes/<%= recipe.id %>">Back to Recipe</a></li>
         </ul>
     </nav>
 
@@ -22,8 +22,10 @@
                 <div class="ingt-info">
                     <select name="ingredients[]">
                         <% userInventory.forEach((product)=> { %>
-                            <option value="<%= product.productName %>" name="product[]" class="ingt-options" <%=ingredient.name === product.productName ? 'selected' : '' %> ><%= product.productName %></option>
-                            <% }) %>
+                            <option value="<%= product.productName %>" name="product[]" class="ingt-options" <%= ingredient.product.productName === product.productName ? 'selected' : '' %> >
+                                <%= product.productName %>
+                            </option>
+                        <% }) %>
                     </select>
                     <input type="number" step="0.0001" name="quantityRequired[]" value="<%= ingredient.quantityRequired %>" class="add-qty">
                 </div>
