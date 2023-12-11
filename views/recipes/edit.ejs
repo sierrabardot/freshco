@@ -1,5 +1,5 @@
 <%- include('../partials/header') %>
-
+<head><script defer src="/JS/main.js"></script></head>
     <h2>
         Update Recipe
     </h2>
@@ -20,7 +20,7 @@
             <label for="ingredients">Ingredients:</label><br />
             <% recipe.ingredients.forEach((ingredient) => { %>
                 <div class="ingt-info">
-                    <select name="ingredients[]">
+                    <select name="ingredients[]" class="select-ingt">
                         <% userInventory.forEach((product)=> { %>
                             <option value="<%= product.productName %>" name="product[]" class="ingt-options" <%= ingredient.product.productName === product.productName ? 'selected' : '' %> >
                                 <%= product.productName %>
@@ -28,20 +28,22 @@
                         <% }) %>
                     </select>
                     <input type="number" step="0.0001" name="quantityRequired[]" value="<%= ingredient.quantityRequired %>" class="add-qty">
+                    <button type="button" class="remove-ingt-btn">-</button>
                 </div>
             <% }) %>
         </div>
-        <button type="button" class="add-ingt-btn">Add Additional Ingredient</button>
+        <button type="button" class="add-ingt-btn">+</button>
 
         <div class="method-container">
             <label>Method:</label>
             <% recipe.method.forEach((step, i)=> { %>
                 <div class="method-step">
-                    <input type="text" name="method[]" value="<%= recipe.method[i] %>"></input>
+                    <input type="text" name="method[]" value="<%= recipe.method[i] %>" class="method-input"></input>
+                    <button type="button" class="remove-step-btn">-</button>
                 </div>
             <% }) %>
         </div>
-        <button type="button" class="add-step-btn">Add Additional Step</button><br />
+        <button type="button" class="add-step-btn">+</button><br />
         <button type="submit">Update Recipe</button>
     </form>
     <form action="/recipes/<%= recipe.id %>?_method=DELETE" method="POST">

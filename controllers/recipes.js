@@ -31,7 +31,8 @@ async function show(req, res) {
 }
 
 async function create(req, res) {
-    const recipe = req.params.recipe;
+    const userId = req.user.id;
+    const userInventory = await Inventory.find({ owner: req.user.id });
     const ingredients = req.body.ingredients;
     let ingredientsArr = [];
     for (let i = 0; i < ingredients.length; i++) {
@@ -47,22 +48,20 @@ async function create(req, res) {
     }
 
     const newRecipe = {
-        owner: req.user.id,
+        owner: userId,
         name: req.body.name,
         ingredients: ingredientsArr,
         serves: +req.body.serves,
         method: req.body.method,
     };
     try {
-        await Recipe.updateOne(newRecipe);
+        await Recipe.create(newRecipe);
         res.redirect('/recipes');
     } catch (err) {
-        const userInventory = await Inventory.find({ owner: req.user.id });
         console.log(err);
-        res.render('recipes/edit', {
+        res.render('recipes/new', {
             userInventory,
-            recipe,
-            title: 'Edit Recipe',
+            title: 'Add Recipe',
         });
     }
 }

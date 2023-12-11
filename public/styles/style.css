@@ -3,13 +3,13 @@
     --dark-pine-green: #182d32;
     --forest-edge: #617c6f;
     --sweet-mint-tea: #d4e5cf;
+    --water: #d2f3fc;
     --roasted-sienna: #e87e5e;
     --white-desert: #fdfaf3;
     --dm-serif-dislay: 'DM Serif Display', serif;
     --dm-sans: 'DM Sans', sans-serif;
 }
 /* || General styles */
-
 * {
     box-sizing: border-box;
 }
