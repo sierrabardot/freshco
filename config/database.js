@@ -6,3 +6,5 @@ const db = mongoose.connection;
 db.on('connected', () => {
     console.log(`Mongoose connected to ${db.host}, using ${db.host}`);
 });
+
+module.exports = db;

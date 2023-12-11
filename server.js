@@ -9,8 +9,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 var methodOverride = require('method-override');
+const MongoStore = require('connect-mongo');
 const PORT = process.env.PORT || 3000;
 
+const db = require('./config/database');
 const inventoryRouter = require('./routes/inventory');
 const indexRouter = require('./routes/index');
 const recipesRouter = require('./routes/recipes');
@@ -32,6 +34,7 @@ app.use(
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: true,
+        store: MongoStore.create({ mongoUrl: process.env.DATABASE_URL }),
     })
 );
 
