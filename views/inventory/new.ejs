@@ -1,24 +1,30 @@
 <%- include('../partials/header') %>
 
-<h2>Add Item</h2>
-<nav>
-    <ul>
-        <li><a href="/inventory">Back to Inventory</a></li>
-    </ul>
-</nav>
+    <h2>Add Item</h2>
+    <nav class="sub-nav">
+        <ul class="no-bullets">
+            <li><a href="/inventory">Back to Inventory</a></li>
+        </ul>
+    </nav>
+    <div class="line"></div>
 
-<form action="/inventory" method="POST">
+    <form action="/inventory" method="POST" class="inventory-form">
+        <div class="name-container">
+            <label class="name-label" for="productName">Item Name:</label>
+            <input type="text" name="productName" required>
+        </div>
 
-    <label for="productName">Item Name:</label>
-    <input type="text" name="productName" required>
+        <div class="sku-container">
+            <label for="sku" class="sku-label">SKU:</label>
+            <input type="text" name="sku" placeholder="e.g. RAW-FOOD-NAME">
+        </div>
 
-    <label for="sku">SKU:</label>
-    <input type="text" name="sku">
+        <div class="qty-container">
+            <label for="quantityAvailable" class="qty-label">Initial Quantity:</label>
+            <input type="number" name="quantityAvailable" placeholder="(kg/L)">
+        </div>
 
-    <label for="quantityAvailable">Initial Quantity: (kg/L)</label>
-    <input type="number" name="quantityAvailable" required>
+        <button type="submit" class="btn-green">Add Item</button>
+    </form>
 
-    <button type="submit">Add Item</button>
-</form>
-
-<%- include('../partials/footer') %>
+    <%- include('../partials/footer') %>

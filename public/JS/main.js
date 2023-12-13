@@ -9,6 +9,7 @@ const methodInput = document.querySelector('.method-input');
 const ingtOptions = document.querySelector('.ingt-options');
 const addQtyInput = document.querySelector('.add-qty');
 const selectIngtEl = document.querySelector('.select-ingt');
+const whiteSpaceEl = document.querySelector('.white-space');
 
 /*---------- Event listeners ----------*/
 addIngredientBtn.addEventListener('click', addIngredient);
@@ -35,9 +36,11 @@ function removeStep(btn) {
 function addStep() {
     const newMethodStep = document.createElement('div');
     newMethodStep.classList.add('method-step');
+    const whiteSpaceClone = whiteSpaceEl.cloneNode(true);
     const methodInputClone = methodInput.cloneNode(true);
     methodInputClone.value = '';
     const removeStepBtnClone = removeStepBtn.cloneNode(true);
+    newMethodStep.appendChild(whiteSpaceClone);
     newMethodStep.appendChild(methodInputClone);
     newMethodStep.appendChild(removeStepBtnClone);
     methodContainerEl.appendChild(newMethodStep);
@@ -46,10 +49,12 @@ function addStep() {
 function addIngredient() {
     const newIngtInfo = document.createElement('div');
     newIngtInfo.classList.add('ingt-info');
+    const whiteSpaceClone = whiteSpaceEl.cloneNode(true);
     const selectIngtClone = selectIngtEl.cloneNode(true);
     const addQtyInputClone = addQtyInput.cloneNode(true);
     addQtyInputClone.value = '';
     const removeIngtBtnClone = removeIngtBtn.cloneNode(true);
+    newIngtInfo.appendChild(whiteSpaceClone);
     newIngtInfo.appendChild(selectIngtClone);
     newIngtInfo.appendChild(addQtyInputClone);
     newIngtInfo.appendChild(removeIngtBtnClone);

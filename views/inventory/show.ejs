@@ -1,11 +1,11 @@
 <%- include('../partials/header') %>
 
 <h2><%= product.productName %></h2>
-<nav>
-    <ul>
-        <li><a href="/inventory">Back to Inventory</a></li>
-        <li><a href="/inventory/<%= product._id %>/edit">Update Item</a></li>
-    </ul>
+    <nav class="sub-nav">
+        <ul class="no-bullets">
+            <li><a href="/inventory">Back to Inventory</a></li>
+            <li><a href="/inventory/<%= product._id %>/edit">Update Item</a></li>
+        </ul>
 </nav> 
 
 <table class="product-table">

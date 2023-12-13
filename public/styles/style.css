@@ -9,6 +9,7 @@
     --dm-serif-dislay: 'DM Serif Display', serif;
     --dm-sans: 'DM Sans', sans-serif;
 }
+
 /* || General styles */
 * {
     box-sizing: border-box;
@@ -18,31 +19,57 @@ body {
     background-color: var(--white-desert);
     font-family: var(--dm-sans);
     margin: 0 auto;
-    padding: 0 30px;
     height: 100%;
-    width: 1140px;
-    max-width: 100%;
+}
+
+main {
+    padding: 0 30px;
+    max-width: 1560px;
+}
+
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.content-wrap {
+    padding-bottom: 175px;
 }
 
 h1 {
-    font-size: 38px;
+    font-size: 42px;
+}
+
+p {
+    font-size: 12px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid var(--dark-pine-green);
 }
 
-tr:nth-child(even) {
-    background-color: var(--white-desert);
-    filter: brightness(110%);
+table th,
+table td {
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    padding: 8px;
+}
+
+input,
+select {
+    font-family: var(--dm-sans);
+    padding: 10px 15px;
+    margin: 5px;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    font-size: 16px;
 }
 
 tr,
 td,
 th {
-    font-size: 14px;
+    font-size: 16px;
     text-align: left;
 }
 
@@ -50,49 +77,223 @@ ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-size: 14px;
 }
 
 a {
+    font-weight: 500;
     color: var(--dark-pine-green);
-    text-decoration: none;
-    position: relative;
-    /* Reference: https://medium.com/@dave_lunny/stylish-a-styling-e80c80cbc30e */
-    &:before {
-        content: '';
-        height: 1.5px;
-        position: absolute;
-        bottom: -0.5px;
-        transition: width 0.1s ease-in-out;
-        width: 100%;
-        background-color: var(--forest-edge);
-    }
-    &:hover:before {
-        width: 0;
-    }
+    text-decoration: underline;
     &:hover {
-        color: var(--forest-edge);
+        text-decoration: none;
     }
 }
 
 /* || SITEWIDE */
-.main-nav {
-    /* … */
+h2 {
+    color: var(--forest-edge);
+    font-size: 34px;
+    font-weight: 500;
+}
+
+.sub-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+li > a {
+    margin: 0 10px;
 }
 
 .logo {
     font-family: var(--dm-serif-dislay);
+    color: var(--dark-pine-green);
+}
+
+[class*='btn'] {
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    font-weight: 500;
+    &:hover {
+        filter: brightness(115%);
+    }
+}
+
+.btn-green {
+    background-color: var(--forest-edge);
+    color: var(--white-desert);
+}
+
+.btn-dark-green {
+    background-color: var(--dark-pine-green);
+    color: var(--white-desert);
+}
+
+.search-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+div.search-bar > input {
+    width: 85%;
+}
+
+div.search-bar > button {
+    width: 10%;
+    font-size: 16px;
+    margin: 5px;
 }
 
 /* || Header and Main Navigation */
+header,
+nav {
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    width: 420px;
+    align-items: center;
+}
 
 /* || Footer */
 footer {
-    width: 75%;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 175px;
+    background-color: var(--sweet-mint-tea);
+}
+
+footer,
+nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.footer-links.no-bullets {
+    width: 300px;
+    font-size: 12px;
 }
 
 /* || Recipes */
+.add-ingt-btn,
+.remove-ingt-btn,
+.remove-step-btn,
+.add-step-btn {
+    background-color: var(--roasted-sienna);
+    color: var(--white-desert);
+    font-size: 30px;
+    width: 35px;
+    min-width: 35px;
+    height: 35px;
+    padding: 0;
+    margin: 5px;
+}
+
+.recipe-form,
+.delete-form,
+.inventory-form {
+    padding-bottom: 30px;
+}
+
+.incl-add-btn {
+    min-height: 164px;
+    padding: 0;
+}
+
+.add-ingt-btn,
+.add-step-btn {
+    position: relative;
+    left: 470px;
+}
+
+.recipe-container,
+.serves-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1500px;
+    justify-content: left;
+}
+
+.ingredients-container,
+.method-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1500px;
+    min-height: 90px;
+}
+
+div.recipe-container > input {
+    width: 400px;
+}
+
+.select-ingt {
+    width: 600px;
+}
+
+.add-qty {
+    width: 190px;
+}
+
+.ingt-info,
+.method-step {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.recipe-label,
+.serves-label,
+.ingts-label,
+.method-label {
+    display: flex;
+    align-items: center;
+    min-width: 150px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--forest-edge);
+}
+
+input.method-input {
+    width: 100%;
+    max-width: 800px;
+}
+
+.method-table td:nth-child(1) {
+    width: 5%;
+}
+
+.method-table td:nth-child(2) {
+    width: 85%;
+}
+
+.recipe-ingts-table th:nth-child(1) {
+    width: 40%;
+}
+
+.recipe-ingts-table th:nth-child(2) {
+    width: 40%;
+}
+
+.recipe-ingts-table th:nth-child(3) {
+    width: 20%;
+}
+
 .recipes-index-table th:nth-child(1) {
     width: 75%;
 }
@@ -102,6 +303,22 @@ footer {
 }
 
 /* || Inventory */
+.name-label,
+.sku-label,
+.qty-label {
+    display: inline-block;
+    min-width: 250px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--forest-edge);
+}
+
+div.sku-container > input,
+div.name-container > input {
+    width: 400px;
+}
+
 .inventory-index-table th:nth-child(1) {
     width: 60%;
 }
@@ -114,13 +331,21 @@ footer {
     width: 20%;
 }
 
-.product-table :nth-child(1) {
-    width: 20%;
-}
-
 /* || UTILITIES */
 .no-bullets {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: lightgrey;
+    margin: 10px 0;
+}
+
+.white-space {
+    width: 150px;
+    min-width: 150px;
 }

@@ -3,17 +3,18 @@
 <h2>
     <%= recipe.name %>
 </h2>
-<nav>
-    <ul>
+    <nav class="sub-nav">
+        <ul class="no-bullets">
         <li><a href="/recipes">Back to Recipes</a></li>
         <li><a href="/recipes/<%= recipe._id %>/edit">Edit Recipe</a></li>
     </ul>
 </nav>
+    <div class="line"></div>
 
 <div>This recipe makes <strong><%= recipe.serves %></strong> serves</div>
 
 <h3>Ingredients</h3>
-<table>
+<table class="recipe-ingts-table">
     <thead>
         <tr>
             <th>Name</th>
@@ -39,11 +40,11 @@
 </table>
 
 <h3>Method</h3>
-<table>
+<table class="method-table">
     <% recipe.method.forEach((step, i)=> { %>
         <tr>
             <td>
-                <%= i + 1 %>
+                <%= i + 1 %>.
             </td>
             <td>
                 <%= step %>

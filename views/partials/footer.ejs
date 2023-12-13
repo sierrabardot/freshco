@@ -1,8 +1,26 @@
+</div>
 </main>
-<footer>
-    <h2 class="logo">Freshco.</h2>
-    <p>&copy; 2023 All rights reserved</p>
-</footer>
-
+    <footer>
+        <div class="footer-logo">
+            <h2 class="logo">Freshco.</h2>
+            <p>&copy; 2023</p>
+        </div>
+            <nav>
+                <ul class="footer-links no-bullets">
+                    <% if (user) { %>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/inventory">Inventory</a></li>
+                        <li><a href="/recipes">Recipes</a></li>
+                        <li><a href="/logout">Log out</a></li>
+                        <% } else { %>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/inventory">Inventory</a></li>
+                            <li><a href="/recipes">Recipes</a></li>
+                            <li><a href="/auth/google">Log in</a></li>
+                            <% } %>
+                </ul>
+            </nav>
+    </footer>
+</div>
 </body>
 </html>

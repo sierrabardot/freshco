@@ -5,27 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/style.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700&family=DM+Serif+Display&display=swap"
-        rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap"
+    rel="stylesheet">
     <title><%= title ? title : 'Freshco.' %> | Freshco.</title>
 </head>
 <body>
-    <header>
-        <h1 class="logo">Freshco.</h1>
-        <nav>
-            <ul class="no-bullets">
-                <% if (user) { %>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/inventory">Inventory</a></li>
-                    <li><a href="/recipes">Recipes</a></li>
-                    <li><a href="/logout">Log Out</a></li>
-                <% } else { %>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/inventory">Inventory</a></li>
-                    <li><a href="/recipes">Recipes</a></li>
-                    <li><a href="/auth/google">Log In</a></li>
-                <% } %>
-            </ul>
-        </nav>
-    </header>
-    <main>
+    <div class="page-container">
+        <div class="content-wrap">
+            <header>
+                <h1 class="logo">Freshco.</h1>
+                <nav>
+                    <ul class="no-bullets nav-links">
+                        <% if (user) { %>
+                            <li><a href="/inventory">Inventory</a></li>
+                            <li><a href="/recipes">Recipes</a></li>
+                            <li><a href="/logout">Log out</a></li>
+                            <li><form action="/dashboard">
+                                <input type="submit" value="Dashboard" class="btn-green">
+                            </form></li>
+                        <% } else { %>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/inventory">Inventory</a></li>
+                            <li><a href="/recipes">Recipes</a></li>
+                            <li>
+                                <form action="/auth/google">
+                                    <input type="submit" value="Log in" class="btn-green">
+                                </form>
+                            </li>
+                        <% } %>
+                    </ul>
+                </nav>
+            </header>
+            <main>

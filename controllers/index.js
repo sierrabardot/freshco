@@ -5,10 +5,11 @@ module.exports = {
     googleOAuth,
     googleOAuthCallback,
     logout,
+    dashboard,
 };
 
 function index(req, res) {
-    res.render('index', { title: 'Inventory Management' });
+    res.render('index', { title: 'Home' });
 }
 
 function googleOAuth(req, res) {
@@ -19,7 +20,7 @@ function googleOAuth(req, res) {
 
 function googleOAuthCallback(req, res) {
     passport.authenticate('google', {
-        successRedirect: '/',
+        successRedirect: '/dashboard',
         failureRedirect: '/',
     })(req, res);
 }
@@ -28,4 +29,8 @@ function logout(req, res) {
     req.logout(function () {
         res.redirect('/');
     });
+}
+
+function dashboard(req, res) {
+    res.render('dashboard', { title: 'Dashboard' });
 }

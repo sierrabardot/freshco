@@ -8,3 +8,4 @@ router.get('/', indexController.index);
 router.get('/auth/google', indexController.googleOAuth);
 router.get('/oauth2callback', indexController.googleOAuthCallback);
 router.get('/logout', indexController.logout);
+router.get('/dashboard', indexController.dashboard);

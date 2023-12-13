@@ -1,12 +1,15 @@
 <%- include('../partials/header') %>
 
     <h2>Recipes</h2>
-    <nav>
-        <ul>
+    <nav class="sub-nav">
+        <ul class="no-bullets">
             <li><a href="/recipes/new">Add Recipe</a></li>
         </ul>
     </nav>
-
+    <div class="line"></div>
+    <div class="search-bar">
+        <input type="search" placeholder="Search for a recipe"></input><button class="btn-green">Search</button>
+    </div>
     <% if (userRecipes.length) { %>
         <table class="recipes-index-table">
             <thead>

@@ -1,11 +1,16 @@
 <%- include('../partials/header') %>
 
 <h2>Inventory</h2>
-<nav>
-    <ul>
-        <li><a href="/inventory/new">Add Item</a></li>
+<nav class="sub-nav">
+    <ul class="no-bullets">
+    <li><a href="/inventory/new">Add Item</a></li>
     </ul>
 </nav>
+
+<div class="line"></div>
+<div class="search-bar">
+    <input type="search" placeholder="Search for an item"></input><button class="btn-green">Search</button>
+</div>
 
 <% if (userInventory.length) { %>
 <table class="inventory-index-table">

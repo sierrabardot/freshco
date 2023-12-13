@@ -3,51 +3,63 @@
     <h2>
         Update Recipe
     </h2>
-    <nav>
-        <ul>
+    <nav class="sub-nav">
+        <ul class="no-bullets">
             <li><a href="/recipes/<%= recipe.id %>">Back to Recipe</a></li>
         </ul>
     </nav>
+    <div class="line"></div>
 
-<form action="/recipes/<%= recipe.id %>?_method=PUT" method="POST">
-        <label for="name">Recipe Name:</label>
+<form action="/recipes/<%= recipe.id %>?_method=PUT" method="POST" class="recipe-form">
+    <div class="recipe-container">
+        <label for="name" class="recipe-label">Recipe Name:</label>
         <input type="text" name="name" value="<%= recipe.name %>" required>
+    </div>
 
-        <label for="serves">Serves:</label>
+    <div class="serves-container">
+        <label for="serves" class="serves-label">Serves:</label>
         <input type="number" name="serves" value="<%= recipe.serves %>">
+    </div>
 
+    <div class="incl-add-button">
         <div class="ingredients-container">
-            <label for="ingredients">Ingredients:</label><br />
-            <% recipe.ingredients.forEach((ingredient) => { %>
-                <div class="ingt-info">
-                    <select name="ingredients[]" class="select-ingt">
-                        <% userInventory.forEach((product)=> { %>
-                            <option value="<%= product.productName %>" name="product[]" class="ingt-options" <%= ingredient.product.productName === product.productName ? 'selected' : '' %> >
-                                <%= product.productName %>
-                            </option>
-                        <% }) %>
-                    </select>
-                    <input type="number" step="0.0001" name="quantityRequired[]" value="<%= ingredient.quantityRequired %>" class="add-qty">
-                    <button type="button" class="remove-ingt-btn">-</button>
-                </div>
-            <% }) %>
+            <label for="ingredients" class="ingts-label">Ingredients:</label>
+        <% recipe.ingredients.forEach((ingredient) => { %>
+            <div class="ingt-info">
+                <div class="white-space"></div>
+                <select name="ingredients[]" class="select-ingt">
+                    <% userInventory.forEach((product)=> { %>
+                        <option value="<%= product.productName %>" name="product[]" class="ingt-options" <%= ingredient.product.productName === product.productName ? 'selected' : '' %> >
+                            <%= product.productName %>
+                        </option>
+                    <% }) %>
+                </select>
+                <input type="number" step="0.0001" name="quantityRequired[]" value="<%= ingredient.quantityRequired %>" class="add-qty">
+                <button type="button" class="remove-ingt-btn">-</button>
+            </div>
+        <% }) %>
         </div>
         <button type="button" class="add-ingt-btn">+</button>
+    </div>
 
+    <div class="incl-add-button">
         <div class="method-container">
-            <label>Method:</label>
+            <label class="method-label">Method:</label>
             <% recipe.method.forEach((step, i)=> { %>
                 <div class="method-step">
+                <div class="white-space"></div>
                     <input type="text" name="method[]" value="<%= recipe.method[i] %>" class="method-input"></input>
                     <button type="button" class="remove-step-btn">-</button>
                 </div>
             <% }) %>
         </div>
         <button type="button" class="add-step-btn">+</button><br />
-        <button type="submit">Update Recipe</button>
-    </form>
-    <form action="/recipes/<%= recipe.id %>?_method=DELETE" method="POST">
-        <!-- Referenced: https://stackoverflow.com/questions/9139075/how-to-show-a-confirm-message-before-delete -->
-        <button type="submit" onclick="return confirm('Are you sure you want to delete this recipe?');">Delete Recipe</button>
+    </div>
 
-    <%- include('../partials/footer') %>
+    <button type="submit" class="btn-green">Save Changes</button>
+</form>
+<form action="/recipes/<%= recipe.id %>?_method=DELETE" method="POST" class="delete-form">
+    <!-- Referenced: https://stackoverflow.com/questions/9139075/how-to-show-a-confirm-message-before-delete -->
+    <button type="submit" onclick="return confirm('Are you sure you want to delete this recipe?');"  class="btn-dark-green">Delete Recipe</button>
+
+<%- include('../partials/footer') %>
