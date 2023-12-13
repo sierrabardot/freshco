@@ -1,3 +1,69 @@
-<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap"
+        rel="stylesheet">
+    <title>
+        <%= title ? title : 'Freshco.' %> | Freshco.
+    </title>
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="content-wrap">
+            <header class="dashboard-header">
+                <h1 class="logo">Freshco.</h1>
+                <nav>
+                    <ul class="no-bullets nav-links">
+                        <% if (user) { %>
+                            <li><a href="/inventory">Inventory</a></li>
+                            <li><a href="/recipes">Recipes</a></li>
+                            <li><a href="/logout">Log out</a></li>
+                            <li>
+                                <form action="/dashboard">
+                                    <input type="submit" value="Dashboard" class="btn-white">
+                                </form>
+                            </li>
+                            <% } else { %>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/inventory">Inventory</a></li>
+                                <li><a href="/recipes">Recipes</a></li>
+                                <li>
+                                    <form action="/auth/google">
+                                        <input type="submit" value="Log in" class="btn-white">
+                                    </form>
+                                </li>
+                                <% } %>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+
+<div class="dashboard-banner">
+    <h1 class="welcome"><span>Welcome</span> to your dashboard.</h1>
+    <img src="/assets/wave-icon.png" class="wave-icon">
+</div>
+<div class="dashboard-links-section">
+    <div class="inventory-container">
+        <div class="icon"><img src="/assets/icon-1.png"></div>
+        <p>Optimize your product management effortlessly. Streamline stock control, add or update items, and ensure your inventory aligns with your business goals.</p>
+        <a href="/inventory"><button class="btn-white">Inventory</button></a>
+    </div>
+    <div class="production-container">
+        <div class="icon-dark"><img src="/assets/icon-2.png"></div>
+        <p>Enhance efficiency in your kitchen. Strategize and oversee production processes to meet demand and maintain the quality that sets your business apart.</p>
+        <a href="#"><button class="btn-dark-green">Production</button></a>
+    </div>
+    <div class="recipes-container">
+        <div class="icon"><img src="/assets/icon-3.png"></div>
+        <p>Explore, create, and organize your business's recipes. Keep all your culinary inspirations in one place.</p>
+        <a href="/recipes"><button class="btn-white">Recipes</button></a>
+    </div>
+</div>
 
 <%- include('partials/footer') %>

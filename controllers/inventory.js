@@ -10,13 +10,42 @@ module.exports = {
     delete: deleteProduct,
 };
 
+// Used this video on pagination and search APIs: https://www.youtube.com/watch?v=0T4GsMYnVN4
 async function index(req, res) {
     const userId = req.user.id;
-    const userInventory = await Inventory.find({ owner: userId });
-    res.render('inventory/index', {
-        userInventory,
-        title: 'Inventory',
-    });
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 5;
+        const search = req.query.search || '';
+        const userInventory = await Inventory.find({
+            owner: userId,
+            productName: { $regex: search, $options: 'i' },
+        })
+            .skip((page - 1) * limit)
+            .limit(limit);
+
+        const total = await Inventory.countDocuments({
+            owner: userId,
+            productName: { $regex: search, $options: 'i' },
+        });
+
+        const response = {
+            error: false,
+            total,
+            page,
+            limit,
+            userInventory,
+        };
+
+        res.render('inventory/index', {
+            userInventory,
+            title: 'Inventory',
+            pagination: response,
+        });
+    } catch (err) {
+        console.log(err);
+        res.render('/', { title: 'Home' });
+    }
 }
 
 function newProduct(req, res) {
