@@ -6,7 +6,6 @@ const addStepBtn = document.querySelector('.add-step-btn');
 const removeIngtBtn = document.querySelector('.remove-ingt-btn');
 const removeStepBtn = document.querySelector('.remove-step-btn');
 const methodInput = document.querySelector('.method-input');
-const ingtOptions = document.querySelector('.ingt-options');
 const addQtyInput = document.querySelector('.add-qty');
 const selectIngtEl = document.querySelector('.select-ingt');
 const whiteSpaceEl = document.querySelector('.white-space');

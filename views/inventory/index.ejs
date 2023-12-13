@@ -8,9 +8,12 @@
 </nav>
 
 <div class="line"></div>
-<div class="search-bar">
-    <input type="search" placeholder="Search for an item"></input><button class="btn-green">Search</button>
-</div>
+<form action="/inventory" method="GET">
+    <div class="search-bar">
+        <input type="text" name="search" placeholder="Search for an item"></input>
+        <button type="submit" class="btn-green">Search</button>
+    </div>
+</form>
 
 <% if (userInventory.length) { %>
 <table class="inventory-index-table">
@@ -32,19 +35,21 @@
     </tbody>
 </table>
 
-<div class="pagination">
-    <% if ( pagination.page > 1) { %>
-        <a href="/inventory?page=<%= pagination.page - 1 %><% pagination.search ? `&search=${pagination.search}` : '' %>"><span>Previous</span></a>
-        <% } %>
-            <span>Page <%= pagination.page %></span>
-            <% if (userInventory.length === pagination.limit) { %>
-                <a href="/inventory?page=<%= pagination.page + 1 %><% pagination.search ? `&search=${pagination.search}` : '' %>"><span>Next</span></a>
-                <% } %>
-</div>
-
 <% } else { %>
     <h4>No Items Listed</h4>
     <% } %>
+</div>
+
+<div class="pagination">
+    <% if (pagination.page > 1) { %>
+        <a
+            href="/inventory?page=<%= pagination.page - 1 %><% pagination.search ? `&search=${pagination.search}` : '' %>">Previous</a>
+        <% } %>
+            Page <%= pagination.page %>
+            <% if (userInventory.length === pagination.limit) { %>
+                <a
+                    href="/inventory?page=<%= pagination.page + 1 %><% pagination.search ? `&search=${pagination.search}` : '' %>">Next</a>
+                <% } %>
 </div>
 
 <%- include('../partials/footer') %>

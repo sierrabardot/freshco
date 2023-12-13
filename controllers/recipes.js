@@ -11,6 +11,7 @@ module.exports = {
     delete: deleteRecipe,
 };
 
+// Returns recipes for the logged in user (req.user.id)
 async function index(req, res) {
     const userRecipes = await Recipe.find({ owner: req.user.id });
     res.render('recipes/index', {
@@ -19,6 +20,9 @@ async function index(req, res) {
     });
 }
 
+// Populates ingredients for each recipe
+// -> First argument = what we are populating in the Recipe model
+// -> Second argument = populates the ingt name and sku from the Inventory model
 async function show(req, res) {
     const recipe = await Recipe.findById(req.params.id).populate(
         'ingredients.product',
@@ -32,21 +36,24 @@ async function show(req, res) {
 
 async function create(req, res) {
     const userId = req.user.id;
-    const userInventory = await Inventory.find({ owner: req.user.id });
+    const userInventory = await Inventory.find({ owner: userId });
     const ingredients = req.body.ingredients;
+    // Loops through all ingredients specified on form and finds each in the user's Inventory
     let ingredientsArr = [];
     for (let i = 0; i < ingredients.length; i++) {
         const product = await Inventory.findOne({
+            owner: userId,
             productName: ingredients[i],
         });
-        console.log(`product: ${product}`);
+        // Ingt object stores product ID from Inventory, and quantityRequired as specified on the form
         const ingredientObj = {
             product: product._id,
             quantityRequired: req.body.quantityRequired[i],
         };
+        // ingredientObj is pushed to ingredientsArr, which is used in newRecipe object
         ingredientsArr.push(ingredientObj);
     }
-
+    // req.body.method returns an array, so method does not need to be looped over
     const newRecipe = {
         owner: userId,
         name: req.body.name,
@@ -55,6 +62,7 @@ async function create(req, res) {
         method: req.body.method,
     };
     try {
+        // newRecipe object is used to create a new recipe
         await Recipe.create(newRecipe);
         res.redirect('/recipes');
     } catch (err) {
@@ -68,6 +76,7 @@ async function create(req, res) {
 
 async function newRecipe(req, res) {
     const userInventory = await Inventory.find({ owner: req.user.id });
+    // User Inventory passed to template in order to render user's inventory in select element
     res.render('recipes/new', {
         userInventory,
         title: 'Add Recipe',
@@ -75,6 +84,7 @@ async function newRecipe(req, res) {
 }
 
 async function edit(req, res) {
+    // Ingredients populated from user's inventory, so form is prefilled with ingredient names
     const recipe = await Recipe.findById(req.params.id).populate(
         'ingredients.product'
     );
@@ -86,12 +96,15 @@ async function edit(req, res) {
     });
 }
 
+// Works similarly to create function - ingredients are looped through and pushed to ingtsArr, which is used to update recipe
 async function update(req, res) {
+    const userId = req.user.id;
     const recipe = await Recipe.findById(req.params.id);
     const ingredients = req.body.ingredients;
     let ingredientsArr = [];
     for (let i = 0; i < ingredients.length; i++) {
         const product = await Inventory.findOne({
+            owner: userId,
             productName: ingredients[i],
         });
         const ingredientObj = {
@@ -101,18 +114,18 @@ async function update(req, res) {
         ingredientsArr.push(ingredientObj);
     }
     const updatedRecipe = {
-        owner: req.user.id,
+        owner: userId,
         name: req.body.name,
         ingredients: ingredientsArr,
         serves: +req.body.serves,
         method: req.body.method,
     };
     try {
-        await Recipe.updateOne({ _id: req.params.id }, updatedRecipe);
+        await Recipe.updateOne({ id: userId }, updatedRecipe);
         res.redirect(`/recipes/${recipe.id}`);
     } catch (err) {
         console.log(err);
-        const userInventory = await Inventory.find({ owner: req.user.id });
+        const userInventory = await Inventory.find({ owner: userId });
         res.render('recipes/edit', {
             recipe,
             userInventory,
