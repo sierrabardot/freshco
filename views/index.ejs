@@ -1,3 +1,101 @@
-<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap"
+        rel="stylesheet">
+    <title>
+        <%= title ? title : 'Freshco.' %> | Freshco.
+    </title>
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="content-wrap">
+            <div class="extended-header-hero">
+                <header>
+                    <a href="/" class="no-underline"><h1 class="logo">Freshco.</h1></a>
+                    <nav>
+                        <ul class="no-bullets nav-links">
+                            <% if (user) { %>
+                                <li><a href="/inventory">Inventory</a></li>
+                                <li><a href="/recipes">Recipes</a></li>
+                                <li><a href="/logout">Log out</a></li>
+                                <li>
+                                    <form action="/dashboard">
+                                        <input type="submit" value="Dashboard" class="btn-green">
+                                    </form>
+                                </li>
+                                <% } else { %>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/inventory">Inventory</a></li>
+                                    <li><a href="/recipes">Recipes</a></li>
+                                    <li>
+                                        <form action="/auth/google">
+                                            <input type="submit" value="Log in" class="btn-white">
+                                        </form>
+                                    </li>
+                                    <% } %>
+                        </ul>
+                    </nav>
+                </header>
+                <section class="hero-text">
+                    <h1>Effortless Inventory Management<div class="line-inplace"><div class="hero-line"></div><span> Starts Here.</span></div></h1>
+                    <p>Free up your time and resources with automated processes.
+                    Effortless Inventory Management isn't just a promise; it's a reality that allows you to focus on what truly matters - growing your business.</p>
+                    <form action="/auth/google">
+                        <input type="submit" value="Get Started" class="btn-green">
+                    </form>
+                </section>
+            </div>
+            <section class="recipes-home">
+                <div class="home-icon-1"><img src="/assets/laptop-icon.png" class="recipes-icon"></div>
+                <div class="recipes-text">
+                    <h4>Create Recipes to Suit Your Business’s Needs</h4>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit, molestias aperiam. Ab nostrum quia laudantium. Iste quia natus officia quas ad, facilis hic magni qui? Ipsam perspiciatis possimus neque assumenda.</p>
+                    <form action="/recipes">
+                        <input type="submit" value="Recipes" class="btn-blue">
+                    </form>
+                </div>
+            </section>
+            <section class="production-home">
+                <div class="production-text">
+                    <h4>Automatically Deduct Stock From Your Inventory</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus iure ipsa molestiae. Quaerat, amet fugit quam inventore dolore ratione impedit magnam quidem tempora provident saepe non, nostrum nesciunt, delectus dolores.</p>
+                    <form action="/production">
+                        <input type="submit" value="Production" class="btn-white">
+                    </form>
+                </div>
+                <div class="home-icon-2"><img src="/assets/icon-4.png" class="production-icon">
+            </section>
+            <section class="inventory-home">
+                <div class="home-icon-3"><img src="/assets/update-icon.png" class="inventory-icon"></div>
+                <div class="inventory-text">
+                    <h4>Seamlessly Track and Update Stock Levels</h4>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque rerum soluta explicabo error suscipit blanditiis voluptas nesciunt ab, nostrum quo at dolor, delectus magnam quidem perspiciatis dignissimos veritatis? Aliquid, quae!</p>
+                    <form action="/inventory">
+                        <input type="submit" value="Inventory" class="btn-white">
+                    </form>
+                </div>
+            </section>
+            <section class="grow-home">
+                <div class="grow-text">
+                    <h3>Grow With Us</h3>
+                    <p>Grow your business confidently with our scalable solution. Whether you're a small startup or an expanding enterprise,
+                    Freshco. adapts to your changing needs.</p>
+                </div>
+                <div class="home-icon-4"><img src="/assets/grow-icon.png" class="grow-icon"></div>
+            </section>
+            <section class="get-started">
+                <h3><span>Ready to get started? </span>Sign up today</h3>
+                <form action="/auth/google">
+                    <input type="submit" value="Sign Up" class="btn-white">
+                </form>
+            </section>
+            <main>
 
 <%- include('partials/footer') %>

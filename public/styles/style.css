@@ -36,8 +36,17 @@ h1 {
     font-size: 46px;
 }
 
+h3 {
+    font-size: 28px;
+    font-weight: 400;
+}
+h4 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
 p {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 table {
@@ -110,7 +119,7 @@ li > a {
 }
 
 [class*='btn'] {
-    padding: 12px;
+    padding: 12px 20px;
     border-radius: 25px;
     border: none;
     font-weight: 500;
@@ -133,6 +142,11 @@ li > a {
 .btn-dark-green {
     background-color: var(--dark-pine-green);
     color: var(--white-desert);
+}
+
+.btn-blue {
+    background-color: var(--water);
+    color: var(--dark-pine-green);
 }
 
 .search-bar {
@@ -200,6 +214,142 @@ nav {
 .footer-links.no-bullets {
     width: 320px;
     font-size: 14px;
+}
+
+/* || Home Page */
+.extended-header-hero {
+    height: 700px;
+    background-image: url(/assets/background.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    padding: 70px;
+}
+
+section.hero-text > h1 {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    font-weight: 400;
+}
+
+section.hero-text > p {
+    width: 500px;
+    font-size: 20px;
+    padding: 10px 0;
+}
+
+section.hero-text > form {
+    padding: 10px 0;
+}
+
+.line-inplace {
+    display: flex;
+    align-items: center;
+}
+
+.hero-line {
+    background-color: var(--dark-pine-green);
+    width: 140px;
+    height: 3px;
+    margin-right: 10px;
+    display: inline-flex;
+}
+
+section.recipes-home > div,
+section.inventory-home > div,
+section.production-home > div {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    text-align: left;
+    padding: 0 125px;
+    width: 50%;
+}
+
+.recipes-home,
+.production-home,
+.inventory-home,
+.grow-home {
+    height: 500px;
+    display: flex;
+}
+
+.recipes-icon,
+.production-icon,
+.inventory-icon,
+.grow-icon {
+    width: 325px;
+    height: min-content;
+}
+
+.home-icon-1 {
+    background-color: var(--water);
+    display: flex;
+    align-items: center;
+}
+
+.recipes-text {
+    background-color: var(--forest-edge);
+    color: var(--white-desert);
+}
+
+.production-home {
+    background-color: var(--roasted-sienna);
+    background-image: url(/assets/freshco-bg.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+    color: var(--white-desert);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.inventory-text {
+    background-color: var(--sweet-mint-tea);
+}
+
+.home-icon-3,
+.inventory-icon {
+    margin: 0 auto;
+}
+
+.grow-home {
+    background-color: var(--dark-pine-green);
+    color: var(--white-desert);
+    justify-content: space-around;
+}
+
+.grow-text {
+    margin: 100px;
+    width: 375px;
+}
+
+.home-icon-4 {
+    margin-bottom: -12px;
+    overflow: hidden;
+    display: flex;
+    align-items: last baseline;
+}
+
+.get-started {
+    background-color: var(--water);
+    height: 240px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+section.get-started > h3 {
+    width: 300px;
 }
 
 /* || Recipes */
@@ -451,6 +601,10 @@ div > img {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.no-underline {
+    text-decoration: none;
 }
 
 .line {
