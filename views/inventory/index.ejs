@@ -45,7 +45,7 @@
         <a
             href="/inventory?page=<%= pagination.page - 1 %><% pagination.search ? `&search=${pagination.search}` : '' %>">Previous</a>
         <% } %>
-            Page <%= pagination.page %>
+            <span>Page <%= pagination.page %></span>
             <% if (userInventory.length === pagination.limit) { %>
                 <a
                     href="/inventory?page=<%= pagination.page + 1 %><% pagination.search ? `&search=${pagination.search}` : '' %>">Next</a>

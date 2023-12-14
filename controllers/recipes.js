@@ -11,13 +11,36 @@ module.exports = {
     delete: deleteRecipe,
 };
 
-// Returns recipes for the logged in user (req.user.id)
+// Returns recipes for the logged in user (req.user.id) sorted in alphabetical order
 async function index(req, res) {
-    const userRecipes = await Recipe.find({ owner: req.user.id });
-    res.render('recipes/index', {
-        userRecipes,
-        title: 'Recipes',
-    });
+    const userId = req.user.id;
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const search = req.query.search || '';
+        const userRecipes = await Recipe.find({
+            owner: userId,
+            name: { $regex: search, $options: 'i' },
+        })
+            .sort({ name: 'asc' })
+            // Skips items from previous pages
+            // i.e. if we are on page 2 and our limit is 10, we will skip ((2 - 1) * 10) items = 10 items will be skipped
+            .skip((page - 1) * limit)
+            .limit(limit);
+
+        const response = {
+            page,
+            limit,
+        };
+        res.render('recipes/index', {
+            userRecipes,
+            title: 'Recipes',
+            pagination: response,
+        });
+    } catch (err) {
+        console.log(err);
+        res.render('/', { title: 'Home' });
+    }
 }
 
 // Populates ingredients for each recipe
@@ -75,8 +98,10 @@ async function create(req, res) {
 }
 
 async function newRecipe(req, res) {
-    const userInventory = await Inventory.find({ owner: req.user.id });
-    // User Inventory passed to template in order to render user's inventory in select element
+    // User Inventory is sorted in alphabetical order and passed to template in order to render user's inventory in select element
+    const userInventory = await Inventory.find({ owner: req.user.id }).sort({
+        productName: 'asc',
+    });
     res.render('recipes/new', {
         userInventory,
         title: 'Add Recipe',
@@ -88,7 +113,9 @@ async function edit(req, res) {
     const recipe = await Recipe.findById(req.params.id).populate(
         'ingredients.product'
     );
-    const userInventory = await Inventory.find({ owner: req.user.id });
+    const userInventory = await Inventory.find({ owner: req.user.id }).sort({
+        productName: 'asc',
+    });
     res.render('recipes/edit', {
         userInventory,
         recipe,

@@ -19,23 +19,18 @@ async function index(req, res) {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
         const search = req.query.search || '';
+        // Sort in alphabetical order
         const userInventory = await Inventory.find({
             owner: userId,
             productName: { $regex: search, $options: 'i' },
         })
+            .sort({ productName: 'asc' })
             // Skips items from previous pages
             // i.e. if we are on page 2 and our limit is 10, we will skip ((2 - 1) * 10) items = 10 items will be skipped
             .skip((page - 1) * limit)
             .limit(limit);
 
-        const total = await Inventory.countDocuments({
-            owner: userId,
-            productName: { $regex: search, $options: 'i' },
-        });
-
         const response = {
-            error: false,
-            total,
             page,
             limit,
         };
@@ -93,7 +88,19 @@ async function show(req, res) {
 // Details from inventory/new form are used to create new product (userId also provided)
 async function create(req, res) {
     const userId = req.user.id;
-    const newProduct = { ...req.body, owner: userId };
+    const productName = req.body.productName;
+    // Ensure the first letter of each word of product name is capitalised
+    const editedName = productName
+        .toLowerCase()
+        .split(' ')
+        .map((str) => str.charAt(0).toUpperCase() + str.substring(1))
+        .join(' ');
+    console.log(editedName);
+    const newProduct = {
+        ...req.body,
+        productName: editedName,
+        owner: userId,
+    };
     try {
         await Inventory.create(newProduct);
         res.redirect('/inventory');
