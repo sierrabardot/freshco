@@ -59,6 +59,7 @@ table td {
     border: none;
     border-bottom: 1px solid lightgrey;
     padding: 8px;
+    height: 60px;
 }
 
 input,
@@ -142,6 +143,11 @@ li > a {
 .btn-dark-green {
     background-color: var(--dark-pine-green);
     color: var(--white-desert);
+}
+
+.btn-red {
+    background-color: var(--roasted-sienna);
+    color: var(--dark-pine-green);
 }
 
 .btn-blue {
@@ -496,6 +502,10 @@ div.name-container > input {
 
 .inventory-index-table th:nth-child(2) {
     width: 20%;
+}
+
+.product-table td:nth-child(1) {
+    width: 30%;
 }
 
 /* || Dashboard */
