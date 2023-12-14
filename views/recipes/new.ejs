@@ -28,6 +28,7 @@
             <div class="ingt-info">
                 <div class="white-space"></div>
                 <select name="ingredients[]" class="select-ingt">
+                  <option value="" disabled selected hidden>Select ingredient</option>
                     <% userInventory.forEach((product) => { %>
                         <option value="<%= product.productName %>" name="product[]" class="ingt-options"><%= product.productName %></option>
                         <% }) %>

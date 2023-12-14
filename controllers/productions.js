@@ -5,13 +5,17 @@ const Recipe = require('../models/recipe');
 module.exports = {
     index,
     // edit,
-    // new: newProduction,
+    new: newProduction,
     // create,
     // update,
 };
 
 async function index(req, res) {
     const userId = req.user.id;
+    // userRecipes passed into template to render recipes when requesting to add new production
+    const userRecipes = await Recipe.find({ owner: userId }).sort({
+        name: 'asc',
+    });
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 5;
@@ -28,6 +32,7 @@ async function index(req, res) {
 
         res.render('productions/index', {
             userProductions,
+            userRecipes,
             title: 'Production History',
             pagination: response,
         });
@@ -39,7 +44,29 @@ async function index(req, res) {
 
 // function edit(req, res) {}
 
-// function newProduction(req, res) {}
+async function newProduction(req, res) {
+    // Form is prefilled with example batch number - today's date
+    const date = new Date()
+        .toISOString()
+        .split('', 10)
+        .join('')
+        .replace('-', '')
+        .replace('-', '');
+    // Recipe data is passed to template so that user does not need to individually select ingts
+    const recipe = await Recipe.find({ name: req.query.recipe }).populate(
+        'ingredients.product',
+        'productName sku'
+    );
+    const userInventory = await Inventory.find({ owner: req.user.id }).sort({
+        productName: 'asc',
+    });
+    res.render('productions/new', {
+        date,
+        recipe,
+        userInventory,
+        title: 'Log Production',
+    });
+}
 
 // function create(req, res) {}
 

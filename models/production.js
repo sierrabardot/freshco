@@ -31,6 +31,10 @@ const productionSchema = new Schema(
                     type: String,
                     required: true,
                 },
+                quantityUsed: {
+                    type: String,
+                    required: true,
+                },
             },
         ],
         quantityMade: {

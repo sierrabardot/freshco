@@ -20,23 +20,23 @@
             <th>Name</th>
             <th>SKU</th>
             <th>Quantity (kg/L)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% recipe.ingredients.forEach((ingredient)=> { %>
-            <tr>
-                <td>
-                    <%= ingredient.ingredientName.productName %>
-                </td>
-                <td>
-                    <%= ingredient.product.sku %>
-                </td>
-                <td>
-                    <%= ingredient.quantityRequired %>
-                </td>
             </tr>
-            <% }) %>
-    </tbody>
+            </thead>
+            <tbody>
+                <% recipe.ingredients.forEach((ingredient)=> { %>
+                    <tr>
+                        <td>
+                            <%= ingredient.product.productName %>
+                        </td>
+                        <td>
+                            <%= ingredient.product.sku %>
+                        </td>
+                        <td>
+                            <%= ingredient.quantityRequired %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
 </table>
 
 <h3>Method</h3>

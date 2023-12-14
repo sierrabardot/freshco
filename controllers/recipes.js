@@ -113,9 +113,8 @@ async function edit(req, res) {
     const recipe = await Recipe.findById(req.params.id).populate(
         'ingredients.product'
     );
-    const userInventory = await Inventory.find({ owner: req.user.id }).sort({
-        productName: 'asc',
-    });
+    console.log(recipe);
+    const userInventory = await Inventory.find({ owner: req.user.id });
     res.render('recipes/edit', {
         userInventory,
         recipe,

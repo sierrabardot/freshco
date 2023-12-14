@@ -1,11 +1,21 @@
 <%- include('../partials/header') %>
     <div class="main-margin">
         <h2>Production History</h2>
-        <nav class="sub-nav">
-            <ul class="no-bullets">
-                <li><a href="/productions/new">Log Production</a></li>
-            </ul>
-        </nav>
+
+    <form action="/productions/new" method="GET">
+        <div class="log-production">
+        <label class="log-production-label">Log production:</label><br>
+        <select name="recipe[]" class="select-recipe">
+                <option value="" disabled selected hidden>Select Recipe</option>
+            <% userRecipes.forEach((recipe)=> { %>
+                <option value="<%= recipe.name %>" name="name[]" class="recipe-options">
+                    <%= recipe.name %>
+                </option>
+                <% }) %>
+        </select>
+        <button type="submit" class="btn-green">Log</button>
+        </div>
+    </form>
 
         <div class="line"></div>
 
@@ -19,6 +29,7 @@
                         <th>Quantity Made</th>
                         <th>Ingredients</th>
                         <th>Batch No.</th>
+                        <th>Qty Used</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +54,8 @@
                                 </td>
                                 <td>
                                     <%= ingredient.batch %>
+                                </td>
+                                    <%= ingredient.quantityUsed %>
                                 </td>
                             <% }) %>
                         </tr>
