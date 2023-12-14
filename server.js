@@ -12,10 +12,10 @@ var methodOverride = require('method-override');
 const MongoStore = require('connect-mongo');
 const PORT = process.env.PORT || 3000;
 
-const db = require('./config/database');
 const inventoryRouter = require('./routes/inventory');
 const indexRouter = require('./routes/index');
 const recipesRouter = require('./routes/recipes');
+const productionsRouter = require('./routes/productions');
 
 const app = express();
 
@@ -49,6 +49,7 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/inventory', inventoryRouter);
 app.use('/recipes', recipesRouter);
+app.use('/productions', productionsRouter);
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
