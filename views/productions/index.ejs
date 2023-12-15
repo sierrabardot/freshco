@@ -4,7 +4,7 @@
 
     <form action="/productions/new" method="GET">
         <div class="log-production">
-        <label class="log-production-label">Log production:</label><br>
+        <label class="log-production-label">Log Production:</label>
         <select name="recipe[]" class="select-recipe">
                 <option value="" disabled selected hidden>Select Recipe</option>
             <% userRecipes.forEach((recipe)=> { %>
@@ -13,60 +13,71 @@
                 </option>
                 <% }) %>
         </select>
-        <button type="submit" class="btn-green">Log</button>
+        <button type="submit" class="btn-green">Add</button>
         </div>
     </form>
 
         <div class="line"></div>
 
         <% if (userProductions.length) { %>
-            <table class="production-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Product Name</th>
-                        <th>Production Batch No.<th>
-                        <th>Quantity Made</th>
-                        <th>Ingredients</th>
-                        <th>Batch No.</th>
-                        <th>Qty Used</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% userProductions.forEach((production)=> { %>
+            <% userProductions.forEach((production)=> { %>
+            <section class="production-log">
+                <div class="production-info">
+                    <table class="production-table">
                         <tr>
+                            <td><strong>Name:</strong></td>
+                            <td>
+                                <strong><%= production.name %></strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date:</strong></td>
                             <td>
                                 <%= production.date %>
                             </td>
-                            <td>
-                                <%= production.name %>
-                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Batch Number:</strong></td>
                             <td>
                                 <%= production.batch %>
                             </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quantity Made:</strong></td>
                             <td>
                                 <%= production.quantityMade %>
                             </td>
-                            <td><%= production.sku %></td>
-                            <% production.stockUsed.forEach((ingredient) => { %>
+                        </tr>
+                    </table>
+                </div>
+                <div class="ingredient-info">
+                <table class="production-table">
+                    <thead>
+                        <tr>
+                            <th>Ingredient:</th>
+                            <th>Batch Number:</th>
+                            <th>Qty Used (kg/L):</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <% production.stockUsed.forEach((ingredient)=> { %>
+                            <tr>
                                 <td>
                                     <%= ingredient.ingredientName.productName %>
                                 </td>
-                            <% }) %>
-                            <% production.stockUsed.forEach((ingredient)=> { %>
                                 <td>
                                     <%= ingredient.ingredientBatch %>
                                 </td>
-                            <% }) %>
-                            <% production.stockUsed.forEach((ingredient)=> { %>
                                 <td>
                                     <%= ingredient.quantityUsed %>
                                 </td>
+                            </tr>
                             <% }) %>
-                        </tr>
-                        <% }) %>
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
+                    </div>
+                </section>
+            <% }) %>
 
             <% } else { %>
                 <h4>No Production History to Show</h4>

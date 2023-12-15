@@ -18,6 +18,7 @@
 body {
     background-color: var(--white-desert);
     font-family: var(--dm-sans);
+    color: var(--dark-pine-green);
     font-kerning: none;
     margin: 0 auto;
     height: 100%;
@@ -59,7 +60,7 @@ table td {
     border: none;
     border-bottom: 1px solid lightgrey;
     padding: 8px;
-    height: 60px;
+    height: 45px;
 }
 
 input,
@@ -361,6 +362,7 @@ section.get-started > h3 {
 
 /* || Recipes */
 .add-ingt-btn,
+.add-ingt-for-prod-btn,
 .remove-ingt-btn,
 .remove-step-btn,
 .add-step-btn {
@@ -386,9 +388,10 @@ section.get-started > h3 {
 }
 
 .add-ingt-btn,
-.add-step-btn {
+.add-step-btn,
+.add-ingt-for-prod-btn {
     position: relative;
-    left: 470px;
+    left: 520px;
 }
 
 .recipe-container,
@@ -433,10 +436,12 @@ div.recipe-container > input {
 .recipe-label,
 .serves-label,
 .ingts-label,
-.method-label {
+.method-label,
+.new-production-label {
     display: flex;
     align-items: center;
-    min-width: 150px;
+    display: inline-block;
+    min-width: 200px;
     height: 40px;
     font-size: 22px;
     font-weight: 500;
@@ -456,10 +461,7 @@ input.method-input {
     width: 85%;
 }
 
-.recipe-ingts-table th:nth-child(1) {
-    width: 40%;
-}
-
+.recipe-ingts-table th:nth-child(1),
 .recipe-ingts-table th:nth-child(2) {
     width: 40%;
 }
@@ -506,6 +508,53 @@ div.name-container > input {
 }
 
 .product-table td:nth-child(1) {
+    width: 30%;
+}
+
+/* || Productions */
+
+.select-recipe {
+    margin: 10px;
+}
+
+.log-production-label {
+    font-size: 20px;
+}
+
+section.production-log {
+    display: flex;
+    border: 1.5px solid lightgrey;
+    border-radius: 25px;
+    margin: 30px 0;
+}
+
+section.production-log > div {
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+}
+
+section.production-log > div:nth-child(1) {
+    width: 40%;
+}
+
+section.production-log > div:nth-child(2) {
+    width: 60%;
+}
+
+div.production-info > table td:nth-child(1) {
+    width: 35%;
+}
+
+div.ingredient-info > table td:nth-child(1) {
+    width: 35%;
+}
+
+div.ingredient-info > table td:nth-child(2) {
+    width: 35%;
+}
+
+div.ingredient-info > table td:nth-child(3) {
     width: 30%;
 }
 
@@ -626,6 +675,6 @@ div > img {
 }
 
 .white-space {
-    width: 150px;
-    min-width: 150px;
+    width: 200px;
+    min-width: 200px;
 }

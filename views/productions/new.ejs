@@ -1,5 +1,7 @@
 <%- include('../partials/header') %>
-<head><script defer src="/JS/main.js"></script></head>
+
+<head><script defer src="/JS/production.js"></script></head>
+
 <div class="main-margin">
     <h2>Log Production - <%= recipe[0].name %></h2>
     <nav class="sub-nav">
@@ -11,25 +13,24 @@
 
 <form action="/productions" method="POST">
     <div class="recipe-container">
-        <label for="name" class="recipe-label">Recipe Name:</label>
+        <label for="name" class="new-production-label">Recipe Name:</label>
         <input type="text" name="name" value="<%= recipe[0].name %>" required>
     </div>
 
     <div class="date-container">
-        <label for="date">Date:</label>
+        <label for="date" class="new-production-label">Date:</label>
         <input type="date" name="date" required>
     </div>
 
     <div class="batch-container">
-        <label for="batch">Production Batch No.:</label>
-        <input type="text" name="batch" value="<%= date %>" required>
+        <label for="batch" class="new-production-label">Batch Number:</label>
+        <input type="text" name="ingredientBatch" value="<%= date %>" required>
     </div>
     <div class="qty-made-container">
-        <label for="quantityMade">Quantity Made:</label>
+        <label for="quantityMade" class="new-production-label">Quantity Made:</label>
         <input type="number" name="quantityMade" required>
     </div>
 
-    <div class="incl-add-button">
         <div class="ingredients-container">
             <label for="ingredients" class="ingts-label">Ingredients:</label>
             <% recipe[0].ingredients.forEach((ingredient)=> { %>
@@ -43,13 +44,13 @@
                             </option>
                             <% }) %>
                     </select>
-                    <input type="text" name="ingredientBatch[]" class="ingt-batch" placeholder="Batch Number">
-                    <input type="number" step="0.0001" name="quantityUsed[]" value="<%= ingredient.quantityRequired %>" class="qty-used">
+                    <input type="text" name="ingredientBatch[]" class="ingt-batch" placeholder="Batch Number" required>
+                    <input type="number" step="0.0001" name="quantityUsed[]" value="<%= ingredient.quantityRequired %>" class="add-qty" required>
                     <button type="button" class="remove-ingt-btn">-</button>
                 </div>
                 <% }) %>
-            <button type="button" class="add-ingt-btn">+</button>
-        </div>
+            </div>
+        <button type="button" class="add-ingt-for-prod-btn">+</button>
         <button type="submit" class="btn-green">Log Production</button>
     </form>
 

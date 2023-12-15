@@ -4,10 +4,8 @@ const Recipe = require('../models/recipe');
 
 module.exports = {
     index,
-    // edit,
     new: newProduction,
     create,
-    // update,
 };
 
 async function index(req, res) {
@@ -60,6 +58,7 @@ async function newProduction(req, res) {
     const userInventory = await Inventory.find({ owner: req.user.id }).sort({
         productName: 'asc',
     });
+
     res.render('productions/new', {
         date,
         recipe,
@@ -87,10 +86,17 @@ async function create(req, res) {
         // ingredientObj is pushed to ingredientsArr, which is used in newProduction object
         ingredientsArr.push(ingredientObj);
     }
+    // Date is recieved from req.body as string - convert back to date object, then format date to string
+    const dateObj = new Date(req.body.date);
+    const formattedDate = dateObj.toLocaleDateString('en-AU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    });
     const newProduction = {
         owner: userId,
         name: req.body.name,
-        date: req.body.date,
+        date: formattedDate,
         batch: req.body.batch,
         quantityMade: req.body.quantityMade,
         stockUsed: ingredientsArr,
