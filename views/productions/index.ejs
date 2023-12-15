@@ -52,9 +52,14 @@
                                 <td>
                                     <%= ingredient.ingredientName.productName %>
                                 </td>
+                            <% }) %>
+                            <% production.stockUsed.forEach((ingredient)=> { %>
                                 <td>
-                                    <%= ingredient.batch %>
+                                    <%= ingredient.ingredientBatch %>
                                 </td>
+                            <% }) %>
+                            <% production.stockUsed.forEach((ingredient)=> { %>
+                                <td>
                                     <%= ingredient.quantityUsed %>
                                 </td>
                             <% }) %>
@@ -64,7 +69,7 @@
             </table>
 
             <% } else { %>
-                <h4>No Items Listed</h4>
+                <h4>No Production History to Show</h4>
                 <% } %>
     </div>
 

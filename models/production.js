@@ -27,7 +27,7 @@ const productionSchema = new Schema(
                     ref: 'Inventory',
                     required: true,
                 },
-                batch: {
+                ingredientBatch: {
                     type: String,
                     required: true,
                 },

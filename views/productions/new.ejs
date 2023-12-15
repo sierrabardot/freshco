@@ -2,8 +2,19 @@
 <head><script defer src="/JS/main.js"></script></head>
 <div class="main-margin">
     <h2>Log Production - <%= recipe[0].name %></h2>
+    <nav class="sub-nav">
+        <ul class="no-bullets">
+            <li><a href="/productions">Back to Production History</a></li>
+        </ul>
+    </nav>
+    <div class="line"></div>
 
 <form action="/productions" method="POST">
+    <div class="recipe-container">
+        <label for="name" class="recipe-label">Recipe Name:</label>
+        <input type="text" name="name" value="<%= recipe[0].name %>" required>
+    </div>
+
     <div class="date-container">
         <label for="date">Date:</label>
         <input type="date" name="date" required>
@@ -13,7 +24,7 @@
         <label for="batch">Production Batch No.:</label>
         <input type="text" name="batch" value="<%= date %>" required>
     </div>
-    <div class="batch-container">
+    <div class="qty-made-container">
         <label for="quantityMade">Quantity Made:</label>
         <input type="number" name="quantityMade" required>
     </div>
@@ -32,14 +43,15 @@
                             </option>
                             <% }) %>
                     </select>
-                    <input type="text" name="batch[]" class="batch" placeholder="Batch Number">
+                    <input type="text" name="ingredientBatch[]" class="ingt-batch" placeholder="Batch Number">
                     <input type="number" step="0.0001" name="quantityUsed[]" value="<%= ingredient.quantityRequired %>" class="qty-used">
                     <button type="button" class="remove-ingt-btn">-</button>
                 </div>
                 <% }) %>
             <button type="button" class="add-ingt-btn">+</button>
         </div>
+        <button type="submit" class="btn-green">Log Production</button>
     </form>
-</div>
+
 
 <%- include('../partials/footer') %>
