@@ -147,7 +147,7 @@ async function update(req, res) {
         method: req.body.method,
     };
     try {
-        await Recipe.updateOne({ id: userId }, updatedRecipe);
+        await Recipe.findByIdAndUpdate(req.params.id, updatedRecipe);
         res.redirect(`/recipes/${recipe.id}`);
     } catch (err) {
         console.log(err);

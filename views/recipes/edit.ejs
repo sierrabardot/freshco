@@ -15,8 +15,8 @@
 
 <form action="/recipes/<%= recipe.id %>?_method=PUT" method="POST" class="recipe-form">
     <div class="recipe-container">
-        <label for="recipe" class="recipe-label">Recipe Name:</label>
-        <input type="text" name="recipe" value="<%= recipe.name %>" required>
+        <label for="name" class="recipe-label">Recipe Name:</label>
+        <input type="text" name="name" value="<%= recipe.name %>" required>
     </div>
 
     <div class="serves-container">

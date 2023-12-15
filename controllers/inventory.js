@@ -64,8 +64,9 @@ async function edit(req, res) {
 async function update(req, res) {
     const updatedProduct = { ...req.body };
     const product = await Inventory.findById(req.params.id);
+    console.log(updatedProduct);
     try {
-        await Inventory.updateOne({ id: req.params.id }, updatedProduct);
+        await Inventory.findByIdAndUpdate(req.params.id, updatedProduct);
         res.redirect(`/inventory/${product.id}`);
     } catch (err) {
         console.log(err);
