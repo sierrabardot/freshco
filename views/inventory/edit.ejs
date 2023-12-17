@@ -21,7 +21,7 @@
 
     <div class="qty-container">
         <label for="quantityAvailable" class="qty-label">Quantity Available:</label>
-        <input type="number" name="quantityAvailable" placeholder="(kg/L)" value="<%= product.quantityAvailable %>" required>
+        <input type="number" name="quantityAvailable" placeholder="(kg/L)" step="0.0001" value="<%= product.quantityAvailable %>" required>
     </div>
 
     <button type="submit" class="btn-green">Save Changes</button>
