@@ -98,7 +98,7 @@ async function create(req, res) {
         name: req.body.name,
         date: formattedDate,
         batch: req.body.batch,
-        quantityMade: req.body.quantityMade,
+        quantityMade: +req.body.quantityMade,
         stockUsed: ingredientsArr,
     };
     console.log(newProduction);
