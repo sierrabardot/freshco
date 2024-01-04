@@ -51,9 +51,11 @@ async function show(req, res) {
         'ingredients.product',
         'productName sku'
     );
+    const serves = parseInt(req.query.serves) || recipe.serves;
     res.render('recipes/show', {
         recipe,
         title: recipe.name,
+        serves,
     });
 }
 
