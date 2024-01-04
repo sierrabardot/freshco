@@ -538,6 +538,10 @@ section.production-log > div {
     margin: 10px;
 }
 
+.production-table {
+    height: fit-content;
+}
+
 section.production-log > div:nth-child(1) {
     width: 40%;
 }
