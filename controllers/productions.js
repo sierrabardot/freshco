@@ -29,15 +29,25 @@ async function index(req, res) {
             limit,
         };
 
+        // Format date for each production
+        const formattedProductions = userProductions.map((production) => ({
+            ...production.toObject(),
+            date: production.date.toLocaleDateString('en-AU', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+            }),
+        }));
+
         res.render('productions/index', {
-            userProductions,
+            userProductions: formattedProductions,
             userRecipes,
             title: 'Production History',
             pagination: response,
         });
     } catch (err) {
         console.log(err);
-        res.render('/', { title: 'Home' });
+        res.render('index', { title: 'Home' });
     }
 }
 
@@ -88,15 +98,11 @@ async function create(req, res) {
     }
     // Date is recieved from req.body as string - convert back to date object, then format date to string
     const dateObj = new Date(req.body.date);
-    const formattedDate = dateObj.toLocaleDateString('en-AU', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-    });
+
     const newProduction = {
         owner: userId,
         name: req.body.name,
-        date: formattedDate,
+        date: dateObj,
         batch: req.body.batch,
         quantityMade: +req.body.quantityMade,
         stockUsed: ingredientsArr,
