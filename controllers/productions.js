@@ -80,6 +80,8 @@ async function newProduction(req, res) {
 async function create(req, res) {
     const userId = req.user.id;
     const ingredients = req.body.ingredients;
+    const quantityUsed = req.body.quantityUsed;
+    console.log(req.body.ingredients);
     // Loops through all ingredients on form and finds each in the user's Inventory
     let ingredientsArr = [];
     for (let i = 0; i < ingredients.length; i++) {
@@ -87,6 +89,20 @@ async function create(req, res) {
             owner: userId,
             productName: ingredients[i],
         });
+
+        // Finds inventory item and updates quantity to reflect the amount that was used in the production
+        const updatedQtyAvailable = (product.quantityAvailable -=
+            quantityUsed[i]);
+        await Inventory.findOneAndUpdate(
+            {
+                owner: userId,
+                productName: ingredients[i],
+            },
+            {
+                quantityAvailable: updatedQtyAvailable,
+            }
+        );
+
         // Ingt object stores product ID from Inventory, and batch/quantityUsed as specified on the form
         const ingredientObj = {
             ingredientName: product._id,
@@ -96,7 +112,7 @@ async function create(req, res) {
         // ingredientObj is pushed to ingredientsArr, which is used in newProduction object
         ingredientsArr.push(ingredientObj);
     }
-    // Date is recieved from req.body as string - convert back to date object, then format date to string
+    // Date is recieved from req.body as string and converted back to date object
     const dateObj = new Date(req.body.date);
 
     const newProduction = {
@@ -107,7 +123,6 @@ async function create(req, res) {
         quantityMade: +req.body.quantityMade,
         stockUsed: ingredientsArr,
     };
-    console.log(newProduction);
     try {
         // newProduction object is used to create a new recipe
         await Production.create(newProduction);
