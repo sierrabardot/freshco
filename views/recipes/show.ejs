@@ -9,39 +9,39 @@
         <li><a href="/recipes/<%= recipe.id %>/edit">Edit Recipe</a></li>
     </ul>
 </nav>
-    <div class="line"></div>
-    
-    <h3>Ingredients</h3>
-    <table class="recipe-ingts-table">
-        <thead>
+<div class="line"></div>
+
+<h3>Ingredients</h3>
+<table class="recipe-ingts-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>SKU</th>
+            <th>Quantity (kg/L)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% recipe.ingredients.forEach((ingredient)=> { %>
             <tr>
-                <th>Name</th>
-                <th>SKU</th>
-                <th>Quantity (kg/L)</th>
+                <td>
+                    <%= ingredient.product.productName %>
+                </td>
+                <td>
+                    <%= ingredient.product.sku %>
+                </td>
+                <td>
+                    <%= ((ingredient.quantityRequired / recipe.serves) * serves).toFixed(2) %>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <% recipe.ingredients.forEach((ingredient)=> { %>
-                <tr>
-                    <td>
-                        <%= ingredient.product.productName %>
-                    </td>
-                    <td>
-                        <%= ingredient.product.sku %>
-                    </td>
-                    <td>
-                        <%= ((ingredient.quantityRequired / recipe.serves) * serves).toFixed(2) %>
-                    </td>
-                </tr>
-                <% }) %>
-            </tbody>
-        </table>
-        
-        <form action="/recipes/<%= recipe.id %>/" class="change-serves-form">
-            <label>Change Servings:</label>
-            <input type="number" name="serves" value="<%= serves %>" required>
-            <button type="submit" class="btn-green">Update</button>
-        </form>
+            <% }) %>
+        </tbody>
+    </table>
+    
+    <form action="/recipes/<%= recipe.id %>/" class="change-serves-form">
+        <label>Change Servings:</label>
+        <input type="number" name="serves" value="<%= serves %>" required>
+        <button type="submit" class="btn-green">Update</button>
+    </form>
 
 <h3>Method</h3>
 <table class="method-table">

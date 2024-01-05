@@ -67,7 +67,7 @@ input,
 select {
     font-family: var(--dm-sans);
     padding: 10px 15px;
-    margin: 0px;
+    margin: 5px;
     border: 1px solid lightgrey;
     border-radius: 25px;
     font-size: 18px;
