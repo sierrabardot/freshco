@@ -1,3 +1,4 @@
+const inventory = require('../models/inventory');
 const Inventory = require('../models/inventory');
 
 module.exports = {
@@ -8,6 +9,7 @@ module.exports = {
     create,
     update,
     delete: deleteProduct,
+    receiveStock,
 };
 
 // Used this video on pagination and search APIs: https://www.youtube.com/watch?v=0T4GsMYnVN4
@@ -60,13 +62,23 @@ async function edit(req, res) {
     });
 }
 
-// Updates from req.body are used to update product
+// Updates from req.body are used to update product - this function is used for updating AND receiving stock
 async function update(req, res) {
-    const updatedProduct = { ...req.body };
+    let updates;
     const product = await Inventory.findById(req.params.id);
-    console.log(updatedProduct);
+    if (req.body.quantityReceived) {
+        console.log(product.quantityAvailable);
+        const quantityReceived = req.body.quantityReceived;
+        console.log(quantityReceived);
+        updates = {
+            quantityAvailable: product.quantityAvailable + quantityReceived,
+        };
+        console.log(updates);
+    } else {
+        updates = { ...req.body };
+    }
     try {
-        await Inventory.findByIdAndUpdate(req.params.id, updatedProduct);
+        await Inventory.findByIdAndUpdate(req.params.id, updates);
         res.redirect(`/inventory/${product.id}`);
     } catch (err) {
         console.log(err);
@@ -75,6 +87,14 @@ async function update(req, res) {
             title: 'Update Inventory',
         });
     }
+}
+
+async function receiveStock(req, res) {
+    const product = await Inventory.findById(req.params.id);
+    res.render('inventory/receive', {
+        product,
+        title: 'Receive Stock',
+    });
 }
 
 // Renders inventory/show.ejs template and product details are provided

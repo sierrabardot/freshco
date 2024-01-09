@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+    <div class="main-margin">
+        <h2>Receive Stock - <%= product.productName %></h2>
+        <nav class="sub-nav">
+            <ul class="no-bullets">
+                <li><a href="/inventory">Back to Inventory</a></li>
+            </ul>
+        </nav>
+        <div class="line"></div>
+
+        <form action="/inventory/<%= product.id %>?_method=PUT" method="post" class="inventory-form">
+            <div class="qty-container">
+                <label for="quantityReceived" class="qty-label">Amount Received:</label>
+                <input type="number" name="quantityReceived" placeholder="(kg/L)" step="0.0001" required>
+            </div>
+
+            <button type="submit" class="btn-green">Update Inventory</button>
+        </form>
+        <%- include('../partials/footer') %>

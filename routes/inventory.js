@@ -12,3 +12,5 @@ router.post('/', ensureLoggedIn, inventoryController.create);
 router.get('/:id/edit', ensureLoggedIn, inventoryController.edit);
 router.put('/:id', ensureLoggedIn, inventoryController.update);
 router.delete('/:id', ensureLoggedIn, inventoryController.delete);
+router.get('/:id/receive', ensureLoggedIn, inventoryController.receiveStock);
+router.put('/:id', ensureLoggedIn, inventoryController.receiveStock);
