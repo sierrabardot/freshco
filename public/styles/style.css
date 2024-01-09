@@ -15,6 +15,12 @@
     box-sizing: border-box;
 }
 
+.main-margin {
+    padding: 0 30px;
+    max-width: 1560px;
+    margin: 0 auto;
+}
+
 body {
     background-color: var(--white-desert);
     font-family: var(--dm-sans);
@@ -56,11 +62,14 @@ table {
 }
 
 table th,
-table td {
+table td,
+table tr {
     border: none;
     border-bottom: 1px solid lightgrey;
     padding: 8px;
     height: 45px;
+    font-size: 18px;
+    text-align: left;
 }
 
 input,
@@ -71,13 +80,6 @@ select {
     border: 1px solid lightgrey;
     border-radius: 25px;
     font-size: 18px;
-}
-
-tr,
-td,
-th {
-    font-size: 18px;
-    text-align: left;
 }
 
 ul {
@@ -206,20 +208,15 @@ nav {
 footer {
     padding: 20px;
     position: absolute;
+    display: flex;
+    justify-content: space-around;
     bottom: 0;
     width: 100%;
     height: 175px;
     background-color: var(--sweet-mint-tea);
 }
 
-footer,
-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.footer-links.no-bullets {
+.footer-links {
     width: 450px;
     font-size: 14px;
 }
@@ -457,31 +454,6 @@ input.method-input {
     max-width: 800px;
 }
 
-.method-table td:nth-child(1) {
-    width: 5%;
-}
-
-.method-table td:nth-child(2) {
-    width: 85%;
-}
-
-.recipe-ingts-table th:nth-child(1),
-.recipe-ingts-table th:nth-child(2) {
-    width: 40%;
-}
-
-.recipe-ingts-table th:nth-child(3) {
-    width: 20%;
-}
-
-.recipes-index-table th:nth-child(1) {
-    width: 75%;
-}
-
-.recipes-index-table th:nth-child(2) {
-    width: 25%;
-}
-
 /* || Inventory */
 .name-label,
 .sku-label,
@@ -494,29 +466,7 @@ input.method-input {
     color: var(--forest-edge);
 }
 
-div.sku-container > input,
-div.name-container > input {
-    width: 400px;
-}
-
-.inventory-index-table th:nth-child(1) {
-    width: 60%;
-}
-
-.inventory-index-table th:nth-child(2) {
-    width: 20%;
-}
-
-.inventory-index-table th:nth-child(2) {
-    width: 20%;
-}
-
-.product-table td:nth-child(1) {
-    width: 30%;
-}
-
 /* || Productions */
-
 .select-recipe {
     margin: 10px;
 }
@@ -542,28 +492,53 @@ section.production-log > div {
     height: fit-content;
 }
 
-section.production-log > div:nth-child(1) {
-    width: 40%;
-}
-
-section.production-log > div:nth-child(2) {
-    width: 60%;
-}
-
-div.production-info > table td:nth-child(1) {
-    width: 35%;
-}
-
-div.ingredient-info > table td:nth-child(1) {
-    width: 35%;
-}
-
+/* || Shared Widths */
+div.production-info > table td:nth-child(1),
+div.ingredient-info > table td:nth-child(1),
 div.ingredient-info > table td:nth-child(2) {
     width: 35%;
 }
 
+div.sku-container > input,
+div.name-container > input {
+    width: 400px;
+}
+
+.inventory-index-table th:nth-child(1),
+section.production-log > div:nth-child(2) {
+    width: 60%;
+}
+
+.product-table td:nth-child(1),
 div.ingredient-info > table td:nth-child(3) {
     width: 30%;
+}
+
+.method-table td:nth-child(1) {
+    width: 5%;
+}
+
+.method-table td:nth-child(2) {
+    width: 85%;
+}
+
+.recipe-ingts-table th:nth-child(1),
+.recipe-ingts-table th:nth-child(2),
+section.production-log > div:nth-child(1) {
+    width: 40%;
+}
+
+.recipe-ingts-table th:nth-child(3),
+.inventory-index-table th:nth-child(2) {
+    width: 20%;
+}
+
+.recipes-index-table th:nth-child(1) {
+    width: 75%;
+}
+
+.recipes-index-table th:nth-child(2) {
+    width: 25%;
 }
 
 /* || Dashboard */
@@ -659,12 +634,6 @@ div > img {
 }
 
 /* || UTILITIES */
-.main-margin {
-    padding: 0 30px;
-    max-width: 1560px;
-    margin: 0 auto;
-}
-
 .no-bullets {
     list-style: none;
     margin: 0;
